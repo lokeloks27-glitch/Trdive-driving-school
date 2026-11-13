@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Sign in{% endblock %}
+{% block content %}<section class="form-card"><div class="eyebrow">ACCOUNT ACCESS</div><h1>Welcome back</h1><p class="muted">Students, staff and administrators use their assigned email and password.</p>
+<form method="post"><label>Email address<input type="email" name="email" required autocomplete="username"></label><label>Password<input type="password" name="password" required autocomplete="current-password"></label><button class="button primary full">Sign in</button></form>
+<p class="muted center">New student? <a href="{{ url_for('register') }}">Create an account</a></p></section>{% endblock %}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}TDRIVE{% endblock %} | Viva Toyota</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}"><span class="viva">VIVA TOYOTA</span><span class="tdrive">TDRIVE</span><small>DRIVING SCHOOL</small></a>
+  <nav>
+    {% if current_user.is_authenticated %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      {% if current_user.role == 'student' %}<a href="{{ url_for('book') }}">Book a class</a><a href="{{ url_for('quiz_home') }}">Theory quiz</a>{% endif %}
+      {% if current_user.role == 'admin' %}<a href="{{ url_for('admin_bookings') }}">Bookings</a><a href="{{ url_for('admin_users') }}">Users</a>{% endif %}
+      <span class="user-chip">{{ current_user.name }} · {{ current_user.role|title }}</span>
+      <a class="nav-button" href="{{ url_for('logout') }}">Sign out</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Sign in</a><a class="nav-button" href="{{ url_for('register') }}">Student registration</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for category, message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>Viva Toyota · TDRIVE Driving School <span>Drive safely. Learn confidently.</span></footer>
+</body></html>

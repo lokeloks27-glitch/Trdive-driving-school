@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block title %}Staff dashboard{% endblock %}
+{% block content %}<div class="page-heading"><div><div class="eyebrow">STAFF PORTAL</div><h1>Class schedule</h1><p class="muted">Upcoming confirmed student bookings.</p></div></div>
+<section class="panel"><div class="table-wrap"><table><thead><tr><th>Student</th><th>Phone</th><th>Class</th><th>Date</th><th>Time</th></tr></thead><tbody>{% for b in upcoming %}<tr><td>{{ b.student.name }}</td><td>{{ b.student.phone or '—' }}</td><td>{{ b.class_type|title }}</td><td>{{ b.class_date.strftime('%d %b %Y') }}</td><td>{{ b.time_slot }}</td></tr>{% else %}<tr><td colspan="5">No upcoming bookings.</td></tr>{% endfor %}</tbody></table></div></section>{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Welcome{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow">VIVA TOYOTA × TDRIVE</div>
+  <h1>Learn to drive.<br><em>Drive with confidence.</em></h1>
+  <p>Book practical and simulator sessions, practise road-safety knowledge and keep your driving-school schedule in one place.</p>
+  <div class="actions"><a class="button primary" href="{{ url_for('register') }}">Register as a student</a><a class="button secondary" href="{{ url_for('login') }}">Sign in</a></div>
+</section>
+<section class="feature-grid">
+  <article class="panel"><div class="feature-icon">01</div><h3>Class bookings</h3><p>Choose practical or simulator training and reserve an available time slot.</p></article>
+  <article class="panel"><div class="feature-icon">02</div><h3>Theory practice</h3><p>Practice five driving knowledge topics and review your quiz scores.</p></article>
+  <article class="panel"><div class="feature-icon">03</div><h3>Role-based access</h3><p>Separate dashboards for students, staff and administrators.</p></article>
+</section>
+{% endblock %}
