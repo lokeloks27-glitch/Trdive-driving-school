@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: tdrive-driving-school
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tdrive-db
+          property: connectionString
+databases:
+  - name: tdrive-db
+    plan: basic-256mb
