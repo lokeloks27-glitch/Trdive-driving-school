@@ -345,6 +345,20 @@ def create_admin(name, email, password):
 
 with app.app_context():
     db.create_all()
+    admin_name = os.environ.get("TDRIVE_ADMIN_NAME")
+    admin_email = os.environ.get("TDRIVE_ADMIN_EMAIL")
+    admin_password = os.environ.get("TDRIVE_ADMIN_PASSWORD")
+
+    if admin_name and admin_email and admin_password:
+        admin_email = admin_email.strip().lower()
+        if not User.query.filter_by(email=admin_email).first():
+            user = User(name=admin_name, email=admin_email, role="admin")
+            user.set_password(admin_password)
+            db.session.add(user)
+            db.session.commit()
+            print("TDRIVE administrator account created.")
+        else:
+            print("TDRIVE administrator email already exists.")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)
