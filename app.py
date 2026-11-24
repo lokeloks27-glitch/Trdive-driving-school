@@ -145,7 +145,7 @@ def load_user(user_id):
 
 @app.context_processor
 def inject_brand():
-    return {"brand_primary": "Viva Toyota", "brand_secondary": "TDRIVE", "today": date.today().isoformat()}
+    return {"brand_primary": "Viva Toyota", "brand_secondary": "TDRIVE", "today": date.today()
 
 @app.route("/")
 def index():
